@@ -58,11 +58,6 @@ jobs:
           docker build --platform linux/amd64 -t ${{ secrets.DOCKER_USERNAME }}/cd-jugurtha-samy:main .
           docker push ${{ secrets.DOCKER_USERNAME }}/cd-jugurtha-samy:main
 
-      - name: Download Javadoc artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: javadoc
-
       - name: Deploy documentation to Netlify
         run: |
           netlify deploy --dir target/reports/apidocs --prod --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --site ${{ secrets.NETLIFY_SITE_ID }}

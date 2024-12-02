@@ -1,7 +1,13 @@
 name: Deploy main branch
-run-name: ${{ github.actor }} deploy main branch c'est un fou 🚀
+run-name: ${{ github.actor }} deploy la main branch c'est un fou 🚀
 
-on: [push]
+on:
+  workflow_run:
+    workflows: ["CI Workflow"]
+    types:
+      - completed
+    branches:
+      - "**"
 
 jobs:
   deploy:

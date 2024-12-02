@@ -1,13 +1,7 @@
 name: Deploy main branch
 run-name: ${{ github.actor }} deploy la main branch c'est un fou 🚀
 
-on:
-  workflow_run:
-    workflows: ["CI Workflow"]
-    types:
-      - completed
-    branches:
-      - "**"
+on: [push]
 
 jobs:
   deploy:
@@ -29,11 +23,12 @@ jobs:
       - name: Build Docker Image
         run: docker build -t saadajugurtha/cd-jugurtha-samy:main .
 
-      - name: Build Documentation
+      - name: Deploy Documentation to Netlify
         run: |
-          # Replace with your documentation build command
-          cd docs
-          make html
+          npm install -g netlify-cli
+          netlify deploy --prod \
+          --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} \
+          --site ${{ secrets.NETLIFY_SITE_ID }}
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2

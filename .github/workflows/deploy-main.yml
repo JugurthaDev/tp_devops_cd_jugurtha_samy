@@ -55,8 +55,8 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build --platform linux/amd64 -t ${{ secrets.DOCKER_USERNAME }}/java-app:main .
-          docker push ${{ secrets.DOCKER_USERNAME }}/java-app:main
+          docker build --platform linux/amd64 -t ${{ secrets.DOCKER_USERNAME }}/cd-jugurtha-samy:main .
+          docker push ${{ secrets.DOCKER_USERNAME }}/cd-jugurtha-samy:main
 
       - name: Deploy to Render.com
         run: |

@@ -63,7 +63,7 @@ jobs:
           curl -X POST -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
           -H "Content-Type: application/json" \
           -d '{"clearCache": true}' \
-          https://api.render.com/deploy/${{ secrets.RENDER_SERVICE_ID }}
+          https://api.render.com/v1/services?limit=20
 
       - name: Deploy documentation to Netlify
         run: |
